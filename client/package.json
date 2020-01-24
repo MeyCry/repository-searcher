@@ -4,12 +4,34 @@
   "description": "Front-End for repository-searcher",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node build.js",
+    "watch": "node build.js watch",
+    "build:production": "NODE_ENV=\"production\" node build.js",
+    "clear": "rm -rf ./public"
   },
   "author": "Tymchuk Vadym <timchukvadim@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "fs-extra": "^8.1.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "redux-thunk": "^2.3.0"
   }
 }

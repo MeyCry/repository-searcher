@@ -1,12 +1,16 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs-extra');
+
+const webpackConfig = require('./webpack.config');
+const {
+    BUILD_PATCH
+} = require('./build-constants');
 
 const {isWatch} = process.argv.reduce((result, item) => {
     result[item] = true;
     return result;
 }, {});
-
-const webpackConfig = require('./webpack.config');
 
 const webpackCompileCallback = (function () {
     var lastHash = null;
@@ -34,7 +38,7 @@ const webpackCompileCallback = (function () {
                     chunks: false
                 }) + '\n'
             );
-            if (!watch && stats.hasErrors()) {
+            if (!isWatch && stats.hasErrors()) {
                 process.exit(1);
             }
         }
@@ -42,6 +46,8 @@ const webpackCompileCallback = (function () {
 })();
 
 (async () => {
+    fs.removeSync(BUILD_PATCH);
+
     const compiler = webpack(webpackConfig);
 
     if (isWatch) {
