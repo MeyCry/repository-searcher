@@ -1,0 +1,13 @@
+body {
+  font: $basefont $fontPrimary;
+  color: $black;
+  background-color: $white;
+  line-height: 1.6;
+  position: relative;
+  word-wrap: break-word;
+  @include select-color();
+}
+
+a {
+  @include href();
+}

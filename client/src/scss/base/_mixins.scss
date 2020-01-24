@@ -1,0 +1,59 @@
+@mixin reset-button() {
+  user-select: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  font-family: $fontPrimary !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  opacity: 1 !important;
+  border-radius: 0 !important;
+  text-transform: none !important;
+  min-width: auto !important;
+  max-width: none !important;
+  transform: none !important;
+  box-sizing: border-box !important;
+}
+
+@mixin href($color: $linkColor, $colorHover: $linkColorHover, $colorActive: $linkColorActive, $colorVisited: $linkColorVisited){
+  &:visited{
+    color: $colorVisited;
+  }
+  &:link{
+    color: $color;
+  }
+  &:hover{
+    color: $colorHover;
+  }
+  &:active{
+    color: $colorActive;
+  }
+}
+
+@mixin pseudo($color: $linkColor, $colorHover: $linkColorHover, $colorActive: $linkColorActive, $type: dashed){
+  @include href($color, $colorHover, $colorActive, $color);
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px $type $color;
+
+  &:hover{
+    text-decoration: none;
+    border-color: $colorHover;
+  }
+  &:active{
+    border-color: $colorActive;
+  }
+}
+
+@mixin select-color($color: $selectionColor) {
+  * {
+    &::selection { background: $color; }
+
+    img {
+      &::selection { background: transparent; }
+    }
+  }
+}

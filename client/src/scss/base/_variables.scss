@@ -1,0 +1,61 @@
+/* ===========================
+Variables
+=========================== */
+
+/* Default Colors */
+/*-----------------------------*/
+$primary: #00aa22;
+
+$animationTime: 0.5s;
+
+$white: #fff;
+$black: #262626;
+$fillingText: #fafafb;
+$lightGray: #eef1f5;
+$lightLightGray: #eef2f4;
+$lighterGrey: #f9fafb;
+$darkGrey: #62687f;
+$darkerGrey: #343b4c;
+$mediumGray: #8d96b2;
+$lightGreen: #80d814;
+$borderMenu: #eef2f4;
+$lightGrayBackground: #eef2f4;
+$hoverGrey: #f9fafb;
+$hoverIconDark: $mediumGray;
+$hoverIconLight: #c6cad8;
+$activeDark: #343b4c;
+$activeLight: #62687f;
+$activeGreen: #0A2;
+$red: #FF4040;
+
+$linkColor: #00bcd4;
+$linkColorHover: $red;
+$linkColorActive: darken($red, 20%);
+$linkColorVisited: $linkColor;
+
+$successColor: $primary;
+$errorColor: #FF4040;
+$warningColor: #FF8018;
+$infoColor: $activeDark;
+
+$successColorHover: #33BB4E;
+$errorColorHover: #FF6666;
+$warningColorHover: #FF9946;
+$infoColorHover: $activeLight;
+
+$successColorActive: #059F26;
+$errorColorActive: #EB3F41;
+$warningColorActive: #EB791D;
+$infoColorActive: $activeDark;
+
+$selectionColor: #b4d5fe;
+
+$maxZIndex: 2147483647;
+/* Fonts */
+/*-----------------------------*/
+$basefont: 16px;
+$fontPrimary: 'Montserrat', Helvetica, Arial, sans-serif;
+
+/* Etc. */
+/*-----------------------------*/
+$borderRadius: 6px;
