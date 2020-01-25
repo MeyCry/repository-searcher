@@ -1,0 +1,44 @@
+@import "../../../scss/base/variables";
+@import "../../../scss/base/mixins";
+
+.search {
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+
+  &__field {
+    display: block;
+  }
+  &__input {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-size: 30px;
+    font-family: $fontPrimary;
+    border-bottom: 1px solid $darkGrey;
+
+    &:focus {
+      border-color: $red;
+    }
+  }
+  &__button {
+    @include reset-button();
+    background: $red;
+    color: $white;
+    font-size: 20px;
+
+    &:focus,
+    &:hover {
+      background: darken($red, 10);
+    }
+    &:active {
+      background: darken($red, 20);
+    }
+  }
+  &--small-view {
+
+  }
+}

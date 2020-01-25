@@ -54,6 +54,18 @@ const config = {
             },
 
             {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '/images/[name].[ext]',
+                        },
+                    },
+                ]
+            },
+
+            {
                 test: /\.(css|scss)$/,
                 use: [
                     {

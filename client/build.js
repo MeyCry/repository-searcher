@@ -18,6 +18,10 @@ function copyHtml() {
     fs.copy(path.resolve(SOURCE_PATCH, 'index.html'), `${BUILD_PATCH}/404.html`);
 }
 
+function copyImages() {
+    fs.copy(path.resolve(SOURCE_PATCH, 'images'), `${BUILD_PATCH}/images`);
+}
+
 const webpackCompileCallback = (function () {
     var lastHash = null;
 
@@ -54,6 +58,7 @@ const webpackCompileCallback = (function () {
 (async () => {
     fs.removeSync(BUILD_PATCH);
     copyHtml();
+    copyImages();
     const compiler = webpack(webpackConfig);
 
     if (isWatch) {

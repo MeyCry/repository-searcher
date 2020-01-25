@@ -1,21 +1,21 @@
 @mixin reset-button() {
-  user-select: none !important;
-  background: transparent !important;
-  border: 0 !important;
-  outline: 0 !important;
-  text-align: center !important;
-  cursor: pointer !important;
-  font-family: $fontPrimary !important;
-  margin: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-  opacity: 1 !important;
-  border-radius: 0 !important;
-  text-transform: none !important;
-  min-width: auto !important;
-  max-width: none !important;
-  transform: none !important;
-  box-sizing: border-box !important;
+  user-select: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  text-align: center;
+  cursor: pointer;
+  font-family: $fontPrimary;
+  margin: 0;
+  box-shadow: none;
+  padding: 0;
+  opacity: 1;
+  border-radius: 0;
+  text-transform: none;
+  min-width: auto;
+  max-width: none;
+  transform: none;
+  box-sizing: border-box;
 }
 
 @mixin href($color: $linkColor, $colorHover: $linkColorHover, $colorActive: $linkColorActive, $colorVisited: $linkColorVisited){

@@ -1,0 +1,8 @@
+@import "../../../scss/base/base-classes";
+
+.content {
+
+  &__inner {
+    @extend %container;
+  }
+}

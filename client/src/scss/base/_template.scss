@@ -11,3 +11,7 @@ body {
 a {
   @include href();
 }
+
+img {
+  max-width: 100%;
+}
