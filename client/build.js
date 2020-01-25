@@ -4,13 +4,19 @@ const fs = require('fs-extra');
 
 const webpackConfig = require('./webpack.config');
 const {
-    BUILD_PATCH
+    BUILD_PATCH,
+    SOURCE_PATCH
 } = require('./build-constants');
 
-const {isWatch} = process.argv.reduce((result, item) => {
+const {watch: isWatch} = process.argv.reduce((result, item) => {
     result[item] = true;
     return result;
 }, {});
+
+function copyHtml() {
+    fs.copy(path.resolve(SOURCE_PATCH, 'index.html'), `${BUILD_PATCH}/index.html`);
+    fs.copy(path.resolve(SOURCE_PATCH, 'index.html'), `${BUILD_PATCH}/404.html`);
+}
 
 const webpackCompileCallback = (function () {
     var lastHash = null;
@@ -35,8 +41,8 @@ const webpackCompileCallback = (function () {
 
                     modules: true,
                     chunkModules: false,
-                    chunks: false
-                }) + '\n'
+                    chunks: false,
+                }) + '\n',
             );
             if (!isWatch && stats.hasErrors()) {
                 process.exit(1);
@@ -47,7 +53,7 @@ const webpackCompileCallback = (function () {
 
 (async () => {
     fs.removeSync(BUILD_PATCH);
-
+    copyHtml();
     const compiler = webpack(webpackConfig);
 
     if (isWatch) {

@@ -10,7 +10,7 @@ const {
 } = require('./build-constants');
 
 const entries = {
-    index: ['./src/scss/style.scss', './src/ts/index.ts'],
+    index: ['./src/scss/style.scss', './src/ts/index.tsx'],
 };
 
 const output = {
