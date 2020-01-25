@@ -27,7 +27,7 @@ class Search extends React.Component<Props> {
         const {query, smallView} = this.props;
         const searchClassName = ['search'];
         if (smallView) {
-            searchClassName.push('search--full-view');
+            searchClassName.push('search--small-view');
         }
         return (
             <form
@@ -52,12 +52,12 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) 
         dispatch(setSearchQuery(query));
     },
     search: (query: string) => {
-        search(query);
+        dispatch(search(query));
     }
 });
 
 const mapStateToProps = (state: AppState) => ({
-    query: state.searchQuery
+    query: state.searchQuery.query
 });
 
 export default connect(

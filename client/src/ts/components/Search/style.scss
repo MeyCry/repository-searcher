@@ -39,6 +39,18 @@
     }
   }
   &--small-view {
+    padding: 10px 0;
+    grid-template-columns: 6fr 1fr;
 
+
+    .search {
+      &__button {
+        font-size: 16px;
+      }
+      &__input {
+        padding: 3px 5px;
+        font-size: 22px;
+      }
+    }
   }
 }

@@ -4,21 +4,23 @@ import {AppState} from '../../../Store/reducers';
 import {connect} from 'react-redux';
 
 type Props = {
-    query: string
+    query: string;
+    totalCount: number;
 }
 
 function ResultPage(props: Props) {
-    const {query} = props;
+    const {query, totalCount} = props;
     return (
         <>
-            <h1>Results: '{query}'</h1>
+            <h1>Results: {totalCount} by name '{query}'</h1>
             <Search smallView/>
         </>
     );
 }
 
 const mapStateToProps = (state: AppState) => ({
-    query: state.searchQuery
+    query: state.searchQuery.currentQueryResult,
+    totalCount: state.repositories.totalCount
 });
 
 export default connect(
