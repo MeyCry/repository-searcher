@@ -4,6 +4,7 @@ import {AnyAction} from 'redux';
 const defaultState = {
     query: '',
     currentQueryResult: '',
+    loading: false
 };
 
 export default (state = defaultState, action: AnyAction) => {
@@ -12,6 +13,8 @@ export default (state = defaultState, action: AnyAction) => {
             return {...state, query: action.payload.query};
         case CHANGE_CURRENT_SEARCH_RESULT_QUERY:
             return {...state, currentQueryResult: action.payload.query};
+        case '':
+            return {...state, loading: action.payload.loading};
         default:
             return state;
     }
