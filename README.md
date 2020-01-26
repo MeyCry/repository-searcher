@@ -1,6 +1,9 @@
 Repository Searcher
 ===================
 
+
+[https://meycry.github.io/repository-searcher/docs](https://meycry.github.io/repository-searcher/docs)
+
 An app for finding repositories on GitHub.
 
 The code is **intentionally** written **difficult** to demonstrate the possibilities of building an architecture in complex projects.
