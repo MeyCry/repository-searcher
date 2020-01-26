@@ -2,7 +2,9 @@ Repository Searcher
 ===================
 
 
-[https://meycry.github.io/repository-searcher/docs](https://meycry.github.io/repository-searcher/docs)
+[https://meycry.github.io/repository-searcher/docs](https://meycry.github.io/repository-searcher/docs) - simple example 
+(not working cache by service worker and user can't reload the page) 
+for full functionality run it locally.
 
 An app for finding repositories on GitHub.
 
