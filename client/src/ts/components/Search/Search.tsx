@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ThunkDispatch} from 'redux-thunk';
 import {AppState} from '../../Store/reducers';
 import {AnyAction} from 'redux';
-import {search, setSearchQuery} from '../../Store/actions/search-query.action';
+import {search, setSearchQuery} from '../../Store/actions/search-query.actions';
 import {connect} from 'react-redux';
 import './style.scss';
 

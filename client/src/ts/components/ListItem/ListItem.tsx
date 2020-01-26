@@ -30,8 +30,8 @@ export default function (props: Props) {
         <div className="list-item">
             <div className="list-item__user-info">
                 <img
-                    width={46}
-                    height={46}
+                    width={92}
+                    height={92}
                     src={avatarUrl}
                     alt={userName}
                     className="list-item__user-avatar"/>

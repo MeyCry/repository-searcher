@@ -12,6 +12,11 @@ type Props = {
 class RepositoriesList extends React.PureComponent<Props> {
     render() {
         const {repositories} = this.props;
+        if (repositories.length === 0) {
+            return (
+                <p>No results</p>
+            )
+        }
 
         const list = repositories.map((item) => {
             return (

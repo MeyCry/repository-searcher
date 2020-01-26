@@ -1,4 +1,4 @@
-import {CHANGE_SEARCH_QUERY, CHANGE_CURRENT_SEARCH_RESULT_QUERY} from '../actions/search-query.action';
+import {CHANGE_SEARCH_QUERY, CHANGE_CURRENT_SEARCH_RESULT_QUERY} from '../actions/search-query.actions';
 import {AnyAction} from 'redux';
 
 const defaultState = {

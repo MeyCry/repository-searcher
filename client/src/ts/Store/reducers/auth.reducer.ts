@@ -1,4 +1,4 @@
-import {SET_AUTH} from '../actions/auth.action';
+import {SET_AUTH} from '../actions/auth.actions';
 import {AnyAction} from 'redux';
 
 const defaultState = {
