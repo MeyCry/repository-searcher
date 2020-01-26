@@ -1,0 +1,49 @@
+@import "../../../scss/base/variables";
+
+.loader {
+  display: block;
+  text-align: center;
+  margin: 40px 20px;
+
+  &__spinner {
+    display: inline-block;
+    //animation: ;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background: $red;
+    border-radius: 0 50% 0 50%;
+
+    /* @keyframes duration | timing-function | delay |
+    iteration-count | direction | fill-mode | play-state | name */
+    animation: 2s linear infinite slidein;
+
+    &:before {
+      content: '';
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: $white;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: -25px 0 0 -25px;
+    }
+  }
+  &--over-all {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 50;
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

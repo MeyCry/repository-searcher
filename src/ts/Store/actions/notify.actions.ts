@@ -2,14 +2,14 @@ export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const DELETE_NOTIFICATION = 'DELETE_NOTIFICATION';
 
 export type AddNotification = {
-    type: 'ADD_NOTIFICATION',
+    type: typeof ADD_NOTIFICATION,
     payload: {
         text: string,
     },
 };
 
 export type DeleteNotification = {
-    type: 'DELETE_NOTIFICATION',
+    type: typeof DELETE_NOTIFICATION,
     payload: {
         id: string,
     },

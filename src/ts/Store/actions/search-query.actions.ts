@@ -6,15 +6,39 @@ import RepositoryModel, {Repository} from '../../helpers/repositoryModel';
 import {AnyAction} from 'redux';
 import {AddNotification, addNotification} from './notify.actions';
 
-export const CHANGE_SEARCH_QUERY = Symbol('CHANGE_SEARCH_QUERY');
-export const CHANGE_CURRENT_SEARCH_RESULT_QUERY = Symbol('CHANGE_CURRENT_SEARCH_RESULT_QUERY');
-export const SET_REPOSITORIES_RESULT = Symbol('SET_REPOSITORIES_RESULT');
+export const CHANGE_SEARCH_QUERY = 'CHANGE_SEARCH_QUERY';
+export const CHANGE_CURRENT_SEARCH_RESULT_QUERY = 'CHANGE_CURRENT_SEARCH_RESULT_QUERY';
+export const SET_REPOSITORIES_RESULT = 'SET_REPOSITORIES_RESULT';
+export const SET_LOADING = 'SET_LOADING';
 
-export type SetSearchQuery = ReturnType<typeof setSearchQuery>;
-export type SetRepositories = ReturnType<typeof setRepositories>;
-export type SetCurrentSearchResultQuery = ReturnType<typeof setCurrentSearchResultQuery>;
+export type SetSearchQuery = {
+    type: typeof CHANGE_SEARCH_QUERY,
+    payload: {
+        query: string
+    }
+};
+export type SetRepositories = {
+    type: typeof SET_REPOSITORIES_RESULT,
+    payload: {
+        totalCount: number,
+        items: Array<RepositoryModel>,
+        currentPage: number,
+    }
+};
+export type SetCurrentSearchResultQuery = {
+    type: typeof CHANGE_CURRENT_SEARCH_RESULT_QUERY,
+    payload: {
+        query: string
+    }
+};
+export type SetLoading = {
+    type: typeof SET_LOADING,
+    payload: {
+        loading: boolean
+    }
+};
 
-export function setSearchQuery(query: string) {
+export function setSearchQuery(query: string): SetSearchQuery {
     return {
         type: CHANGE_SEARCH_QUERY,
         payload: {
@@ -23,13 +47,22 @@ export function setSearchQuery(query: string) {
     };
 }
 
-export function setCurrentSearchResultQuery(query: string) {
+export function setCurrentSearchResultQuery(query: string): SetCurrentSearchResultQuery {
     return {
         type: CHANGE_CURRENT_SEARCH_RESULT_QUERY,
         payload: {
             query
         }
     };
+}
+
+export function setLoading(isLoading: boolean): SetLoading {
+    return {
+        type: SET_LOADING,
+        payload: {
+            loading: isLoading
+        }
+    }
 }
 
 type SearchResult = {
@@ -42,7 +75,7 @@ type SearchError = {
     message: string;
 }
 
-export function setRepositories(result: SearchResult, page: number) {
+export function setRepositories(result: SearchResult, page: number): SetRepositories {
     if (!result && !Array.isArray(result)) {
         return;
     }
@@ -62,12 +95,15 @@ export function setRepositories(result: SearchResult, page: number) {
 
 type SearchActions = SetRepositories
     | SetCurrentSearchResultQuery
-    | AddNotification;
+    | AddNotification
+    | SetLoading;
 
 let currentSearchAbort: () => void | null = null;
 
 export function search(query: string, page: number = 1) {
     return async (dispath: ThunkDispatch<AppState, void, SearchActions>) => {
+        dispath(setLoading(true));
+
         // abort request if it not finish
         if (currentSearchAbort) {
             currentSearchAbort();
@@ -99,8 +135,10 @@ export function search(query: string, page: number = 1) {
 
             dispath(setRepositories(result as SearchResult, page));
             dispath(setCurrentSearchResultQuery(query));
+            dispath(setLoading(false));
         } catch (e) {
             dispath(addNotification(e.message));
+            dispath(setLoading(false));
             console.error(e);
         }
     };

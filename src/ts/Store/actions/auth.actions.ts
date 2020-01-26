@@ -10,7 +10,7 @@ export function setAuthenticated(isAuthenticated: boolean) {
 }
 
 export type SetAuthenticated = {
-    type: 'SET_AUTH',
+    type: typeof SET_AUTH,
     payload: {
         isAuthenticated: boolean,
     }

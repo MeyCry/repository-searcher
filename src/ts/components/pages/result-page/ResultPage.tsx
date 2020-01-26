@@ -1,9 +1,10 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import Search from '../../Search/Search';
 import {AppState} from '../../../Store/reducers';
-import {connect} from 'react-redux';
 import RepositoriesList from '../../RepositoriesList/RepositoriesList';
 import Paginator from '../../Paginator/Paginator';
+import Loader from '../../Loader/Loader';
 
 type Props = {
     query: string;
@@ -16,7 +17,10 @@ function ResultPage(props: Props) {
         <>
             <h1>Results: {totalCount} by name '{query}'</h1>
             <Search smallView/>
+            <Paginator marginPagesDisplayed={2}/>
+            <Loader overAll></Loader>
             <RepositoriesList/>
+
             <Paginator marginPagesDisplayed={2}/>
         </>
     );
@@ -24,7 +28,7 @@ function ResultPage(props: Props) {
 
 const mapStateToProps = (state: AppState) => ({
     query: state.searchQuery.currentQueryResult,
-    totalCount: state.repositories.totalCount
+    totalCount: state.repositories.totalCount,
 });
 
 export default connect(
