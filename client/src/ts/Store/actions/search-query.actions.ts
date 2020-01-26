@@ -4,6 +4,7 @@ import {AppState} from '../reducers';
 import {abortableFetch} from '../../helpers/abortableFetch';
 import RepositoryModel, {Repository} from '../../helpers/repositoryModel';
 import {AnyAction} from 'redux';
+import {AddNotification, addNotification} from './notify.actions';
 
 export const CHANGE_SEARCH_QUERY = Symbol('CHANGE_SEARCH_QUERY');
 export const CHANGE_CURRENT_SEARCH_RESULT_QUERY = Symbol('CHANGE_CURRENT_SEARCH_RESULT_QUERY');
@@ -37,7 +38,14 @@ type SearchResult = {
     items: Array<Repository>
 }
 
+type SearchError = {
+    message: string;
+}
+
 export function setRepositories(result: SearchResult, page: number) {
+    if (!result && !Array.isArray(result)) {
+        return;
+    }
     const items = result.items.map(res => new RepositoryModel(res));
 
     history.push(`/results/${page}`);
@@ -52,15 +60,18 @@ export function setRepositories(result: SearchResult, page: number) {
     };
 }
 
+type SearchActions = SetRepositories
+    | SetCurrentSearchResultQuery
+    | AddNotification;
+
 let currentSearchAbort: () => void | null = null;
 
 export function search(query: string, page: number = 1) {
-    return async (dispath: ThunkDispatch<AppState, void, SetRepositories | SetCurrentSearchResultQuery>) => {
+    return async (dispath: ThunkDispatch<AppState, void, SearchActions>) => {
         // abort request if it not finish
         if (currentSearchAbort) {
             currentSearchAbort();
         }
-        dispath(setCurrentSearchResultQuery(query));
 
         const requestParams = [
             ['page', page],
@@ -80,10 +91,16 @@ export function search(query: string, page: number = 1) {
             currentSearchAbort = rawResultPromise.abort;
             const rawResult = await rawResultPromise;
             currentSearchAbort = null;
-            const result: SearchResult = await rawResult.json();
+            const result: SearchResult | SearchError = await rawResult.json();
 
-            dispath(setRepositories(result, page));
+            if (rawResult.status >= 400) {
+                throw new Error((result as SearchError).message || 'Request error')
+            }
+
+            dispath(setRepositories(result as SearchResult, page));
+            dispath(setCurrentSearchResultQuery(query));
         } catch (e) {
+            dispath(addNotification(e.message));
             console.error(e);
         }
     };

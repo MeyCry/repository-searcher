@@ -6,8 +6,13 @@ export function setAuthenticated(isAuthenticated: boolean) {
         payload: {
             isAuthenticated,
         }
-    }
+    };
 }
 
-export type SetAuthenticated = ReturnType<typeof setAuthenticated>;
+export type SetAuthenticated = {
+    type: 'SET_AUTH',
+    payload: {
+        isAuthenticated: boolean,
+    }
+};
 

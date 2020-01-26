@@ -6,11 +6,13 @@ import store from './Store';
 import Routes from './routes';
 import Header from './components/Header/Header';
 import Content from './components/Content/Content';
+import Notifications from './components/Notifications/Notifications';
 
 export default function App() {
     return (
         <Provider store={store}>
             <Router history={history}>
+                <Notifications/>
                 <div className="container">
                     <Header/>
                     <Content>
