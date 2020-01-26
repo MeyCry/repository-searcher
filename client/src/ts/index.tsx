@@ -9,6 +9,10 @@ function renderReactDOM() {
         <App/>,
         wrapper,
     );
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/js/sw.js');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', renderReactDOM);
