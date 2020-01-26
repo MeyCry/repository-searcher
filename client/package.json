@@ -6,9 +6,10 @@
   "scripts": {
     "server": "npx http-server -p 3000 -o",
     "start": "npm run build && npm run server",
-    "build": "node build.js",
+    "build": "node build.js && npm run build:sw",
     "watch": "node build.js watch",
-    "build:production": "NODE_ENV=\"production\" node build.js",
+    "build:sw": "npx workbox generateSW workbox-config.js",
+    "build:production": "NODE_ENV=\"production\" node build.js && npm run build:sw",
     "clear": "rm -rf ./public"
   },
   "author": "Tymchuk Vadym <timchukvadim@gmail.com>",
@@ -34,7 +35,8 @@
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "workbox-cli": "^4.3.1"
   },
   "dependencies": {
     "react": "^16.12.0",

@@ -11,7 +11,6 @@ const {
 
 const entries = {
     index: ['./src/scss/style.scss', './src/ts/index.tsx'],
-    sw: ['./src/ts/sw.ts'],
 };
 
 const output = {
