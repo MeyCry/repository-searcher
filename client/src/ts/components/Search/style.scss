@@ -2,6 +2,8 @@
 @import "../../../scss/base/mixins";
 
 .search {
+  width: 60%;
+  margin: 0 auto;
   padding: 40px 0;
   display: grid;
   grid-template-columns: 5fr 1fr;
@@ -39,6 +41,7 @@
     }
   }
   &--small-view {
+    width: 100%;
     padding: 10px 0;
     grid-template-columns: 6fr 1fr;
 

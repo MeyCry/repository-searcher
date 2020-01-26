@@ -10,7 +10,9 @@ export interface Repository {
     name: string
     full_name: string;
     url: string;
+    html_url: string;
     watchers: number;
+    stargazers_count: number;
 }
 
 export default class RepositoryModel {
@@ -24,17 +26,19 @@ export default class RepositoryModel {
     forks: number;
     userName: string;
     avatarUrl: string;
+    stars: number;
 
     constructor(repository: Repository) {
         this.id = repository.id;
         this.name = repository.name;
         this.fullName = repository.full_name;
-        this.url = repository.url;
+        this.url = repository.html_url;
         this.language = repository.language;
         this.watchers = repository.watchers;
         this.created_at = repository.created_at;
         this.forks = repository.forks;
         this.userName = repository.owner.login;
         this.avatarUrl = repository.owner.avatar_url;
+        this.stars = repository.stargazers_count;
     }
 }
