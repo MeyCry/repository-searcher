@@ -1,16 +1,17 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {AppState} from '../../Store/reducers';
-import './style.scss';
 import {ThunkDispatch} from 'redux-thunk';
 import {AnyAction} from 'redux';
 import {changePage} from '../../Store/actions/search-query.actions';
+import './style.scss';
 
 type CellProps = {
     number: number;
     currentPage: number;
     handleClick: (page: number) => void
 };
+
 function Cell(props: CellProps) {
     const {
         number,
@@ -43,8 +44,8 @@ type Props = {
     changePage: (page: number) => void;
 }
 
-class Paginator extends React.Component<Props> {
-    createButton(index: number, current: number) {
+export class Paginator extends React.Component<Props> {
+    createButton = (index: number, current: number) => {
         // for this task it ok use index as a key because we don't change items, we only rerender new list
         return <Cell
             handleClick={this.setPage}
@@ -63,12 +64,9 @@ class Paginator extends React.Component<Props> {
         this.props.changePage(page);
     };
 
-    render() {
+    getButtonsList = () => {
         const {pages, currentPage, marginPagesDisplayed} = this.props;
         const pageRangeDisplayed = 5;
-        if (pages <= 1) {
-            return false;
-        }
 
         const buttonsList = [];
 
@@ -126,6 +124,17 @@ class Paginator extends React.Component<Props> {
             }
         }
 
+        return buttonsList;
+    };
+
+    render() {
+        const {pages} = this.props;
+        if (pages <= 1) {
+            return false;
+        }
+
+        const buttonsList = this.getButtonsList();
+
         return (
             <div className="paginator">
                 <div className="paginator__inner">
@@ -152,10 +161,10 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) => ({
     changePage: (page: number) => {
         dispatch(changePage(page));
-    }
+    },
 });
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(Paginator);

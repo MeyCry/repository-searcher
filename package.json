@@ -10,7 +10,8 @@
     "watch": "node build.js watch",
     "build:sw": "npx workbox generateSW workbox-config.js",
     "build:production": "NODE_ENV=\"production\" node build.js && npm run build:sw",
-    "clear": "rm -rf ./public"
+    "clear": "rm -rf ./public",
+    "test": "npx jest"
   },
   "author": "Tymchuk Vadym <timchukvadim@gmail.com>",
   "license": "ISC",
@@ -20,20 +21,31 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^13.5.0",
+    "@types/node-fetch": "^2.5.4",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.1.3",
+    "@types/react-test-renderer": "^16.9.2",
+    "abort-controller": "^3.0.0",
     "autoprefixer": "^9.7.4",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
     "file-loader": "^5.0.2",
     "fs-extra": "^8.1.0",
     "http-server": "^0.12.1",
+    "jest": "^25.1.0",
+    "jest-fetch-mock": "^3.0.1",
     "mini-css-extract-plugin": "^0.9.0",
+    "node-fetch": "^2.6.0",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
+    "react-test-renderer": "^16.12.0",
     "sass-loader": "^8.0.2",
+    "ts-jest": "^25.0.0",
+    "typescript": "^3.7.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "workbox-cli": "^4.3.1"
@@ -45,5 +57,11 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./jest.config.js"
+    ]
   }
 }
