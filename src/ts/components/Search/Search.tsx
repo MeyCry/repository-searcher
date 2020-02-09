@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {ThunkDispatch} from 'redux-thunk';
 import {AppState} from '../../Store/reducers';
-import {AnyAction} from 'redux';
-import {search, setSearchQuery} from '../../Store/actions/search-query.actions';
+import {Dispatch} from 'redux';
+import {searchAction, SetSearchQuery, setSearchQuery} from '../../Store/actions/search-query.actions';
 import {connect} from 'react-redux';
 import './style.scss';
 
@@ -47,12 +46,12 @@ class Search extends React.Component<Props> {
     }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
     setSearchQuery: (query: string) => {
         dispatch(setSearchQuery(query));
     },
     search: (query: string) => {
-        dispatch(search(query));
+        dispatch(searchAction(query));
     }
 });
 

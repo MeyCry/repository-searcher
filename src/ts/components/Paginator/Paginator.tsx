@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {AppState} from '../../Store/reducers';
-import {ThunkDispatch} from 'redux-thunk';
-import {AnyAction} from 'redux';
+import {AnyAction, Dispatch} from 'redux';
 import {changePage} from '../../Store/actions/search-query.actions';
 import './style.scss';
 
@@ -158,7 +157,7 @@ const mapStateToProps = (state: AppState) => ({
     currentPage: state.repositories.currentPage,
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
     changePage: (page: number) => {
         dispatch(changePage(page));
     },

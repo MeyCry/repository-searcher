@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {AppState} from '../../Store/reducers';
-import {ThunkDispatch} from 'redux-thunk';
-import {AnyAction} from 'redux';
+import {AnyAction, Dispatch} from 'redux';
 import NotificationModel from '../../helpers/notificationModel';
 import {deleteNotification} from '../../Store/actions/notify.actions';
 import './style.scss'
@@ -44,7 +43,7 @@ const mapStateToProps = (state: AppState) => ({
     notifications: state.notify.notifications,
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, AnyAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
     close: (id: string) => {
         dispatch(deleteNotification(id));
     },
